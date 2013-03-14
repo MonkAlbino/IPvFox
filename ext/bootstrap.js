@@ -317,9 +317,21 @@ function insertPanel(window) {
       var row   = window.document.createElementNS("http://www.w3.org/1999/xhtml","html:tr");
       var cell1 = window.document.createElementNS("http://www.w3.org/1999/xhtml","html:td");
       var cell2 = window.document.createElementNS("http://www.w3.org/1999/xhtml","html:td");
-     
-      cell1.appendChild(window.document.createTextNode(host.host));
-      cell2.appendChild(window.document.createTextNode(host.address));
+
+      var link1 = window.document.createElementNS("http://www.w3.org/1999/xhtml","html:a");
+      link1.setAttribute("href", host.host);
+      link1.setAttribute("target", "_blank");
+      link1.appendChild(window.document.createTextNode(host.host));
+      cell1.appendChild(link1);
+
+      var link2 = window.document.createElementNS("http://www.w3.org/1999/xhtml","html:a");
+      link2.setAttribute("href", "http://bgp.he.net/ip/" + host.address);
+      link2.setAttribute("target", "_blank");
+      link2.appendChild(window.document.createTextNode(host.address));
+      cell2.appendChild(link2);
+
+      //cell1.appendChild(window.document.createTextNode(host.host));
+      //cell2.appendChild(window.document.createTextNode(host.address));
       
       if (host.family == AF_INET6)
         cell2.className = "ipv6";
